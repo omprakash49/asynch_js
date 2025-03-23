@@ -103,3 +103,55 @@ Promise.all([promiseOne,promiseTwo])
 .catch((error) => {
     console.log(error);
 });
+
+// asynch and await
+
+const stepOne = () => {
+    return new Promise((resolve,reject) => {
+        const step = true;
+        if(step){
+            resolve("step one is done");
+        }else{
+            reject("step failed");
+        }
+    })
+}
+
+const stepTwo = () => {
+    return new Promise((resolve,reject) => {
+        const step = false;            // if rejected at some point it will not execute frome here onwards
+        if (step){
+            resolve("step two is done");
+        }else {
+            reject("steo two failed");
+        }
+
+    })
+}
+
+const stepThree = () => {
+    return new Promise((resolve,reject) => {
+        const step3 = false;
+        if(step3){
+            resolve("step 3 is done");
+        } else {
+            reject("step 3 is failed");
+        }
+    })
+}
+
+const stepOrder = async () =>{
+    try{
+        const s1 = await stepOne();
+        console.log(s1);
+        const s2 = await stepTwo();
+        console.log(s2);
+        const s3 = await stepThree();
+        console.log(s3);
+
+    }
+    catch (error){
+        console.log(error);
+    }
+}
+stepOrder();
