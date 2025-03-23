@@ -10,8 +10,9 @@ function task2(callback){
     setTimeout(() => {
         console.log("task 2 completed");
         callback;
-    }, 00)
+    }, 300)
 }
+
 
 task1(() =>{
     task2(() =>{
@@ -78,5 +79,27 @@ process1
     console.log(value);
 });
 
-// promise all
+// promise all 
+// it resolves if only  all the promises are resolved;
 
+console.log("this is promise all");
+
+const promiseOne = new Promise((resolve,reject) => {
+    setTimeout(() =>{
+        resolve("promise one is resloved");
+    },4000);
+});
+
+const promiseTwo = new Promise((reslove,reject) => {
+    setTimeout(() => {
+        reslove("promise two is resolved");
+    },3000);
+});
+
+Promise.all([promiseOne,promiseTwo])
+.then((data) => {
+    console.log(data[0],data[1]);
+})
+.catch((error) => {
+    console.log(error);
+});
