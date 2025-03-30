@@ -9,7 +9,7 @@ function task1(callback){
 function task2(callback){
     setTimeout(() => {
         console.log("task 2 completed");
-        callback;
+        callback();
     }, 300)
 }
 
@@ -120,6 +120,7 @@ const stepOne = () => {
 const stepTwo = () => {
     return new Promise((resolve,reject) => {
         const step = false;            // if rejected at some point it will not execute frome here onwards
+                                     // in promise chaining
         if (step){
             resolve("step two is done");
         }else {
@@ -155,3 +156,25 @@ const stepOrder = async () =>{
     }
 }
 stepOrder();
+
+
+// fetch api
+
+fetch('https://dummyjson.com/test')
+.then(data => data.json())
+.then(console.log);
+
+// random joke usinf asynch wait
+
+async function randoJoke(){
+    try{
+        let joke = await fetch(`https://official-joke-api.appspot.com/random_joke`);
+        let jokeJson = await joke.json();    
+        console.log(jokeJson.setup);
+        console.log(jokeJson.punchline);
+
+    } catch(error){
+        console.log(error);
+    }
+}
+randoJoke();
