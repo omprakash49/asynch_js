@@ -1,31 +1,16 @@
-function createScoreTracker(){
-    let score = 0;
-
-    return {
-        increase : function(points){
-            score += points;
-        },
-        decrease : function(points){
-            score -= points;
-        },
-        getScore : function(){
-            console.log(score);
-        },
-        reset : function(){
-            score = 0;
-        }
+let employee = {
+    work : function(){
+        console.log("employee is working");
     }
 }
 
-let player1 =  createScoreTracker();
-player1.increase(10);
-player1.decrease(5);
+let engineer = {
+    code : function(){
+        console.log("engineer is coding");
+    }
+}
 
-let player2 = createScoreTracker();
-player2.increase(20);
-player2.decrease(3);
+engineer.__proto__ = employee;
 
-
-
-player1.getScore();
-player2.getScore();
+engineer.work();
+engineer.code();
